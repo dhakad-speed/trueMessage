@@ -4,7 +4,7 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(request: NextRequest) {
   // const registration = request.cookies.get("registration_started")?.value;
   const { pathname } = request.nextUrl;
-  const secretAuth = String(process.env.NEXTAUTH_SECRET);
+
   // const restrictedRoutesDuringAuthentication = ["/verify/"];
   const protectedRoutes = [
     "/dashboard",
@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
     "/messages",
   ];
   const publicRoutes = ["/login", "/register"];
-  const token = await getToken({ secret: secretAuth, req: request });
+  const token = await getToken({ req: request });
   // if (
   //   restrictedRoutesDuringAuthentication.some((route) =>
   //     pathname.startsWith(route)

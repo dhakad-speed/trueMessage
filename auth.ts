@@ -51,10 +51,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  /**
-   * Use the same secret everywhere (auth + middleware/getToken)
-   * so that JWTs can be correctly verified.
-   */
+
   secret: String(process.env.NEXTAUTH_SECRET),
   pages: {
     signIn: "/login",
@@ -74,7 +71,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         token.name = typeof user.name === "string" ? user.name : token.name;
       }
-
+      console.log(token);
       return token;
     },
     async session({ token, session }) {

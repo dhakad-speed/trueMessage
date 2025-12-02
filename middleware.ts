@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
-import { config as appConfig } from "./config";
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -18,6 +18,7 @@ export async function middleware(request: NextRequest) {
     req: request,
     secret: String(process.env.NEXTAUTH_SECRET),
   });
+  console.log(token);
 
   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
     return NextResponse.redirect(new URL("/register", request.url));

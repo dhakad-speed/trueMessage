@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Inter_Tight, Poppins } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./../globals.css";
-import LayoutPage from "../../components/layout/page/LayoutPage";
+import LayoutPage from "../components/layout/page/LayoutPage";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-sans",

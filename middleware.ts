@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
 
   const token = await getToken({
     req: request,
-    secret: appConfig.jwtSecretToken,
+    secret: String(process.env.NEXTAUTH_SECRET),
   });
 
   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
   }
 }
 
-export const middlewareConfig = {
+export const config = {
   matcher: [
     "/dashboard",
     "/profile",

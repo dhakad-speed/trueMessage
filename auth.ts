@@ -55,7 +55,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
    * Use the same secret everywhere (auth + middleware/getToken)
    * so that JWTs can be correctly verified.
    */
-  secret: config.jwtSecretToken,
+  secret: String(process.env.NEXTAUTH_SECRET),
   pages: {
     signIn: "/login",
   },
@@ -95,5 +95,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   session: {
     strategy: "jwt",
+  },
+  cookies: {
+    sessionToken: {
+      name: "__Secure-next-auth.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
   },
 });

@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { ConnectDataBase } from "./src/lib/connection";
 import UserModel from "./src/models/User";
 import { verifyPassword } from "./src/lib/secure";
+import { config } from "./config";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -50,6 +51,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  /**
+   * Use the same secret everywhere (auth + middleware/getToken)
+   * so that JWTs can be correctly verified.
+   */
+  secret: config.jwtSecretToken,
   pages: {
     signIn: "/login",
   },

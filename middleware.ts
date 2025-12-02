@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { config as appConfig } from "./config";
 export async function middleware(request: NextRequest) {
-  // const registration = request.cookies.get("registration_started")?.value;
   const { pathname } = request.nextUrl;
 
-  // const restrictedRoutesDuringAuthentication = ["/verify/"];
   const protectedRoutes = [
     "/dashboard",
     "/profile",
@@ -14,26 +13,21 @@ export async function middleware(request: NextRequest) {
     "/messages",
   ];
   const publicRoutes = ["/login", "/register"];
-  const token = await getToken({ req: request });
-  // if (
-  //   restrictedRoutesDuringAuthentication.some((route) =>
-  //     pathname.startsWith(route)
-  //   ) &&
-  //   registration
-  // ) {
-  //   return NextResponse.redirect(new URL("/register", request.url));
-  // }
+
+  const token = await getToken({
+    req: request,
+    secret: appConfig.jwtSecretToken,
+  });
+
   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
     return NextResponse.redirect(new URL("/register", request.url));
   }
   if (publicRoutes.some((route) => pathname.startsWith(route)) && token) {
-    // setTimeout(() => {
     return NextResponse.redirect(new URL("/dashboard", request.url));
-    // }, 1000);
   }
 }
 
-export const config = {
+export const middlewareConfig = {
   matcher: [
     "/dashboard",
     "/profile",

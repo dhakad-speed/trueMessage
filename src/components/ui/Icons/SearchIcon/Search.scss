@@ -1,0 +1,7 @@
+@use "../../../styles/default.scss" as *;
+.search-icon{
+  margin-inline: 12px;
+  path{
+    fill: $BlogIconColor;
+  }
+}

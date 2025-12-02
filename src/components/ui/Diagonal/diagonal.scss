@@ -1,0 +1,31 @@
+@use "./../../../styles/default.scss" as *;
+
+
+
+.MuiGrid-root{
+  .vector-diagonal-div {
+    background-color: $darkBlue;
+    height: 800px;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 63%, 0 100%);
+  }
+  
+  .vector-diagonal-sub-div {
+    grid-row-start: 1;
+    background-color: #9babfd;
+    grid-column-start: 1;
+    height: 350px;
+    width: -webkit-fill-available;
+    clip-path: polygon(0 85%, 100% 0, 100% 8%, 0 100%);
+    opacity: 0.4;
+    margin-top: 503px;
+  }
+
+.overlay-container {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  width: 100%;
+  z-index: 99;
+}
+}

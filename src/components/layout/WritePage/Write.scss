@@ -1,0 +1,142 @@
+@use "./../../../styles/default.scss" as *;
+
+.MuiContainer-root{
+  .content{
+    .form-section{
+      margin-top: 80px;
+      .form{
+       .search-box{ 
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+       .msg-accept{
+        .MuiSwitch-root {
+          margin-right: 6px;
+          width: 46px;
+          height: 26px;
+          border-radius: 21px;
+          padding: 0;
+          display: flex;
+  
+          &:focus-within {
+              outline: 3px solid $outlineBlue;
+          }
+  
+          &:active {
+              &.MuiSwitch-thumb {
+                  width: 22
+              }
+  
+              &.MuiSwitch-switchBase.Mui-checked {
+                  transform: translate(9px)
+              }
+          }
+  
+          .MuiSwitch-switchBase {
+              padding: 0;
+              top: 2px;
+              right: 22px;
+              left: unset;
+          }
+  
+          .Mui-checked {
+              transform: translate(12px);
+              color: $white ;
+              right: 14px;
+  
+              &+.MuiSwitch-track {
+                  opacity: 1;
+                  background-color: $darkBlue ;
+              }
+  
+              &.Mui-disabled {
+                  &+.MuiSwitch-track {
+                      opacity: 1;
+                      background-color: $darkBlue ;
+                  }
+              }
+          }
+  
+          .Mui-disabled {
+              &+.MuiSwitch-track {
+                  background-color: #f0f2f5;
+              }
+          }
+  
+          .MuiSwitch-thumb {
+              width: 22px;
+              height: 22px;
+              border-radius: 15px;
+              box-shadow: none
+          }
+  
+          .MuiSwitch-track {
+              border-radius: 26 / 2;
+              opacity: 1;
+              background-color: $lightCyanBlue ;
+              box-sizing: border-box;
+          }
+  
+          .Mui-disabled .MuiSwitch-thumb {
+              color: #fafafa
+          }
+       }
+      }
+        .MuiInputBase-root{
+        background-color: #fff;
+        color: #0a193e;
+        width: 500px;
+        border: 1px solid transparent;
+        border-radius: 24px;
+        height: 30px;
+        box-shadow: 0 4px 4px -2px rgba(11, 37, 75, .12), 0 0 0 1px rgba(11, 37, 75, .08);
+        &.error-input {
+          border: 1px solid red;
+          color: red;
+          box-shadow: none;
+        }
+        input{
+          padding: 8px 10px;
+          width: 100%;
+        }
+        input:focus{
+          outline: 3px solid $outlineBlue;
+          border-radius: 24px;
+          height: 10px;
+        }
+       
+      
+      }}
+     .message-box{
+      display: flex;
+        flex-direction: column;
+        gap: 20px;
+      textarea{
+        width: 500px;
+        border: 1px solid $darkBlue;
+        border-radius: 8px;
+        margin-top: 4px;
+        padding: 8px 10px;
+        &.error-input {
+          border: 1px solid red;
+          color: red;
+          box-shadow: none;
+        }
+       
+      }
+      textarea:focus{
+        border: none;
+        outline:  3px solid $outlineBlue;
+      }
+    
+     }
+     .MuiButtonBase-root{
+      text-transform: none;
+      color: $darkBlue;
+      box-shadow: 0 4px 4px -2px rgba(11, 37, 75, .12), 0 0 0 1px rgba(11, 37, 75, .08);
+
+    }
+    }
+    }
+  }
+}

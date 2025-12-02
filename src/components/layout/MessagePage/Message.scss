@@ -1,0 +1,13 @@
+@use "./../../../styles/default.scss" as *;
+.spin {
+  animation: spin360 0.5s linear;
+}
+
+@keyframes spin360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,49 @@
+@use "./../../../styles/default.scss" as *;
+nav{
+  padding:12px 24px 12px 16px;
+  height: 60px;
+  background-color: #111827;
+  color: white;
+
+  .nav-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .left{
+     
+      .left-content{
+       display: flex;
+       align-items: center;
+        gap: 20px;
+        .menu{
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+          
+        }
+        .logo{
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        
+      }
+    }
+    .right{
+      display: flex;
+      justify-content: flex-end;
+      .right-content{
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      
+    }
+  }
+
+
+
+}
+
+

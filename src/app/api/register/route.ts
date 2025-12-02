@@ -67,10 +67,7 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-    // (await cookies()).set("registration_started", "true", {
-    //   httpOnly: true,
-    //   path: "/",
-    // });
+
     return NextResponse.json(
       {
         success: true,

@@ -1,5 +1,4 @@
 import React from "react";
-import "./../globals.css";
 import { Toaster } from "react-hot-toast";
 import { Inter_Tight, Poppins } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";

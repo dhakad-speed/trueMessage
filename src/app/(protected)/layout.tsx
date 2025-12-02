@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Inter_Tight, Poppins } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.css";
+import LayoutPage from "../../components/layout/page/LayoutPage";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-sans",
@@ -15,15 +16,21 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Next Blog",
+  title: "Home | Next Blog",
   description: "a blog app",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+interface RootLayoutprops {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutprops) {
   return (
     <html lang="en">
-      <body className={`${interTight.variable} ${poppins.variable}`}>
-        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+      <body className={`${interTight.variable} ${poppins.variable} `}>
+        <AppRouterCacheProvider>
+          <LayoutPage>{children}</LayoutPage>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

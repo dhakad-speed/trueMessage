@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
   console.log(token);
 
   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
-    return NextResponse.redirect(new URL("/register", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
   if (publicRoutes.some((route) => pathname.startsWith(route)) && token) {
     return NextResponse.redirect(new URL("/dashboard", request.url));

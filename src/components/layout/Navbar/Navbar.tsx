@@ -97,7 +97,11 @@ function Navbar() {
                     </AppBox>
                   </Link>
                   <Button
-                    onClick={() => signOut()}
+                    onClick={() =>
+                      signOut({
+                        callbackUrl: `${window.location.origin}/register`,
+                      })
+                    }
                     sx={{
                       background: "#000",
                       color: "#fff",

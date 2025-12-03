@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter_Tight, Poppins } from "next/font/google";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.css";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-sans",
@@ -22,9 +22,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${interTight.variable} ${poppins.variable}`}>
-        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-      </body>
+      <AppRouterCacheProvider>
+        <body className={`${interTight.variable} ${poppins.variable}`}>
+          <>{children}</>
+        </body>
+      </AppRouterCacheProvider>
     </html>
   );
 }

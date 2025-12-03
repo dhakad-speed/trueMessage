@@ -106,7 +106,7 @@ function ProfileComponent() {
                   />
                 ) : (
                   <Button
-                    onClick={() => signOut()}
+                    onClick={() => signOut({ callbackUrl: `${window.location.origin}/register` })}
                     sx={{
                       background: "#f9f9f9",
                       fontSize: "14px",

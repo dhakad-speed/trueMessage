@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 // import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import SignIn from "@/src/helpers/Sign";
+import { logger } from "@/src/lib/logger";
 function Login() {
   // const { status } = useSession();
   const router = useRouter();
@@ -35,7 +36,7 @@ function Login() {
         console.log({ signInUser });
         if (signInUser.success) {
           toast.success(signInUser.message);
-          console.log("Success");
+          logger.info("success");
           router.push("/dashboard");
         } else {
           toast.error(signInUser.message || "Failed to log in");

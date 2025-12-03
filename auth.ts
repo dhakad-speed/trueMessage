@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { ConnectDataBase } from "./src/lib/connection";
 import UserModel from "./src/models/User";
 import { verifyPassword } from "./src/lib/secure";
+import { logger } from "./src/lib/logger";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -59,7 +60,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token._id = user.id?.toString();
-
         token.isVerified =
           typeof user.isVerified === "boolean" ? user.isVerified : undefined;
 
@@ -70,6 +70,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         token.name = typeof user.name === "string" ? user.name : token.name;
       }
+      return token;
     },
     async session({ token, session }) {
       if (token) {

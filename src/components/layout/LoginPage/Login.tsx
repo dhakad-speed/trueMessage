@@ -32,8 +32,10 @@ function Login() {
           identifier: values.identifier,
           password: values.password,
         });
+        console.log({ signInUser });
         if (signInUser.success) {
           toast.success(signInUser.message);
+          console.log("Success");
           router.push("/dashboard");
         } else {
           toast.error(signInUser.message || "Failed to log in");

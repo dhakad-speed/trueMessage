@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { logger } from "./src/lib/logger";
 
 export async function middleware(request: NextRequest) {
+  console.log("I am in middleware");
   const { pathname } = request.nextUrl;
 
   const protectedRoutes = [
@@ -18,12 +20,14 @@ export async function middleware(request: NextRequest) {
     req: request,
     secret: String(process.env.NEXTAUTH_SECRET),
   });
-  console.log(token);
+  logger.debug({ token, pathname }, "Middleware token check");
 
   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    logger.info({ pathname }, "Redirecting unauthenticated user to register");
+    return NextResponse.redirect(new URL("/register", request.url));
   }
   if (publicRoutes.some((route) => pathname.startsWith(route)) && token) {
+    logger.info({ pathname }, "Redirecting authenticated user to dashboard");
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 }

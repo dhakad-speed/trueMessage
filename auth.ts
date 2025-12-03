@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { ConnectDataBase } from "./src/lib/connection";
 import UserModel from "./src/models/User";
 import { verifyPassword } from "./src/lib/secure";
+import { logger } from "./src/lib/logger";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -70,7 +71,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         token.name = typeof user.name === "string" ? user.name : token.name;
       }
-      console.log(token);
+      try {
+        logger?.info(token);
+      } catch (error) {
+        // Fallback to console if logger worker has exited
+        console.log("JWT token:", token);
+      }
       return token;
     },
     async session({ token, session }) {
